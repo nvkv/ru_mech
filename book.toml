@@ -8,5 +8,9 @@ title = "Мех Гайд"
 [build]
 build-dir = "docs"
 
+[output.html]
+additional-css = ["custom_assets/fonts.css"]
+no-section-label = true
+
 [output.html.search]
 enable = false

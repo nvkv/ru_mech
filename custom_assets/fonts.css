@@ -1,0 +1,10 @@
+html {
+    font-family: Source Sans Pro, Helvetica Neue, Arial, sans-serif;
+    color: var(--fg);
+    background-color: var(--bg);
+    text-size-adjust: none;
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+    font-size: 17px;
+    -moz-osx-font-smoothing: grayscale;
+}
