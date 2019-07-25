@@ -1,0 +1,12 @@
+[book]
+authors = ["MechCult"]
+language = "ru"
+multilingual = false
+src = "src"
+title = "Мех Гайд"
+
+[build]
+build-dir = "docs"
+
+[output.html.search]
+enable = false

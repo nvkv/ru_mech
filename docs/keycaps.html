@@ -1,0 +1,372 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Кейкапы - Мех Гайд</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="index.html"><strong aria-hidden="true">1.</strong> Home</a></li><li><a href="FAQ.html"><strong aria-hidden="true">2.</strong> FAQ</a></li><li><a href="keycaps.html" class="active"><strong aria-hidden="true">3.</strong> Кейкапы</a></li><li><a href="QMK.html"><strong aria-hidden="true">4.</strong> Программирование</a></li><li><a href="stabs.html"><strong aria-hidden="true">5.</strong> Cтабилизаторы</a></li><li><a href="shops.html"><strong aria-hidden="true">6.</strong> Где купить</a></li><li><a href="glossary.html"><strong aria-hidden="true">7.</strong> Глоссарий</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Мех Гайд</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#Клавиши-keycaps-кейкапы" id="Клавиши-keycaps-кейкапы">Клавиши (keycaps, кейкапы)</a></h1>
+<p>Как неочевидно это бы ни звучало, но клавиши (колпачки/капы/кейкапы) могут очень сильно влиять на ощущения от печати и от клавиатуры в целом. Также профиль клавиш — то, какой они формы и высоты, — может влиять на комфорт, скорость и точность печати.</p>
+<p>У любой клавиши есть три основные характеристики: материал, профиль и метод нанесения символов — они определяют внешний вид и тактильные ощущения. Кратко пройдёмся по всем из них.</p>
+<h2><a class="header" href="#Пластик" id="Пластик">Пластик</a></h2>
+<p>В основном существует 3 типа материалов, из которых изготавливают клавиши:<br />
+ABS (Acrylonitrile butadiene styrene) — Акрилонитрилбутадиенстирол<br />
+PBT (Polybutylene terephthalate) — Полибутилентерефталат<br />
+POM (Polyoxymethylene) — Полиформальдегид/полиоксиметилен/полиацеталь</p>
+<p>Особняком стоят кейкапы из резины, силикона, дерева и прочего сырья, но встречаются они в основном в виде единичных клавиш или небольших наборов, поэтому их мы затрагивать не будем.</p>
+<p>Не обязательно запоминать названия всех полимеров, достаточно знать их акронимы.</p>
+<p>Если очень кратко, то PBT, как правило, лучше ABS, но бывают и исключения.</p>
+<h3><a class="header" href="#abs" id="abs">ABS</a></h3>
+<p>Наиболее распространённый тип материала из которого делают клавиши.</p>
+<p>Имеет следующий ряд преимуществ:</p>
+<ul>
+<li>Пластик стоит дешевле.</li>
+<li>Технологии формовки, литья и окраски клавиш проще.</li>
+<li>Можно достичь некоторых визуальных эффектов (например, сделать прозрачную клавишу).</li>
+</ul>
+<p>И на этом всё.
+Но как раз из-за этих пунктов это — самый распространенный материал для изготовления клавиш, они банально дешевле в производстве.</p>
+<p><em>Износ клавиш из ABS-пластика (источник — geekhack):</em>
+<img src="images/keycaps_abs_shine.jpg" alt="Shined ABS keycaps" /></p>
+<p>А далее минусы:</p>
+<ul>
+<li>Плотность пластика заметно меньше, чем у PBT (сказывается на ощущениях и звуке при печати).</li>
+<li>Со временем клавиши теряют текстуру (клавиша начинает блестеть, теряет приятную шероховатость).</li>
+<li>Впитывает жиры с пальцев как губка.</li>
+<li>Белые капы желтеют (уже не так, как раньше, но все еще встречается).</li>
+</ul>
+<h3><a class="header" href="#pbt" id="pbt">PBT</a></h3>
+<p>За редким исключением, клавиши из PBT практически не встречаются на клавиатурах для массового рынка.</p>
+<p>Из плюсов:</p>
+<ul>
+<li>Выше плотность пластика — улучшаются звуковые и тактильные характеристики.</li>
+<li>Исключительно устойчивы к механическим повреждениям, перепадам температур и химическому воздействию.</li>
+</ul>
+<p>И минусы:</p>
+<ul>
+<li>Значительно сложнее в производстве и, как следствие, их дороже изготавливать, чем ABS.</li>
+<li>Некоторые варианты окраски неосуществимы или осуществимы с ограничениями.</li>
+</ul>
+<h3><a class="header" href="#pom" id="pom">POM</a></h3>
+<p>Очень редкий тип пластика в производстве клавиш, почти не встречается даже в отдельных наборах.</p>
+<p>Плюсы:</p>
+<ul>
+<li>Прочность аналогична PBT.</li>
+<li>Не стирается и не впитывает жиры.</li>
+<li>Термостойкость чуть ниже, чем у PBT, но всё равно позволяет ему выдерживать кипящую воду без деформаций.</li>
+</ul>
+<p>Минусы:</p>
+<ul>
+<li>Скользкий.</li>
+<li>Окисляется в присутствии хлора в любых концентрациях (даже в простой воде из-под крана).</li>
+<li>При деполимеризации превращается в токсичный формальдегид.</li>
+<li>Ещё меньше вариантов возможной окраски.</li>
+</ul>
+<p>Но всегда стоит помнить, что ABS ABS'y рознь. Например, клавиши от компаний SP, Maxkey и GMK — это толстые ABS клавиши с двойным литьём (doubleshot) и их можно перепутать с PBT.</p>
+<h2><a class="header" href="#Профили" id="Профили">Профили</a></h2>
+<p><img src="images/keyboard_profiles.jpg" alt="Клавиши SA, Mix (MDA), OEM, Cherry, XDA, DSA" /></p>
+<p>Помимо всего вышеперечисленного, клавиши бывают разных профилей, причём отличия могут быть не только в форме поверхности клавиш (плоская, цилиндрическая, сферическая), но и в высоте, например, когда клавиши одного ряда выше клавиш другого (sculptured profile), или наоборот, когда все клавиши всех рядов одной высоты (uniform profile) — подробнее об этом в следующем разделе.</p>
+<h3><a class="header" href="#oem" id="oem">OEM</a></h3>
+<p><em>OEM Pudding Keycaps (фото <a href="https://kbobsession.blogspot.com/">Quartz64</a> с первого клавиатурного ру-митапа, клавиатура <a href="https://www.reddit.com/user/diimdeep">diimdeep</a>):</em>
+<img src="images/keycaps_oem.jpg" alt="OEM Pudding" />
+Если у вас сейчас есть механическая клавиатура, то с большой долей вероятности у вас именно этот профиль.
+Как таковой профиль ничем не плох, есть разница по высоте, чтобы помогать пальцам находить клавиши, форма клавиш сделана так, чтобы максимально задействовать доступное пространство и по клавишам было легче попадать.</p>
+<h3><a class="header" href="#cherry" id="cherry">Cherry</a></h3>
+<p><em>Набор GMK Carbon (источник — <a href="https://www.reddit.com/r/MechanicalKeyboards/comments/7sxygq/sx60_feat_gmk_carbon/">Reddit</a>):</em>
+<img src="images/keycaps_cherry.jpg" alt="GMK Carbon" />
+Sculptured-профиль с цилиндрическими выемками на верхней грани клавиш. Поставлялся на всех клавиатурах Cherry, а в данный момент, после выкупа оборудования компанией GMK, выпускается у них. Клавиши в общем и целом очень похожи на OEM, но значительно ниже.</p>
+<h3><a class="header" href="#tai-hao-cubic" id="tai-hao-cubic">Tai-Hao Cubic</a></h3>
+<p><em>Профили Cherry (на переднем плане) и Tai-Hao Cubic (источник — <a href="https://www.keychatter.com/2017/06/29/first-look-tai-hao-cubic-profile/">Keychatter</a>):</em>
+<img src="images/keycaps_cherry_vs_cubic.jpg" alt="Cherry vs Cubic" />
+Уникальный профиль компании Tai-Hao. Нечто среднее между Cherry и OEM.</p>
+<h3><a class="header" href="#dcs" id="dcs">DCS</a></h3>
+<p><em>Набор DCS Purple Rain (источник — <a href="https://thevankeyboards.com/products/dcs-purple-rain">TheVan Keyboards</a>):</em>
+<img src="images/keycaps_dcs.jpg" alt="Purple Rain" /></p>
+<p>А это — взгляд Signature Plastics на ОЕМ-профиль. Кейкапы этого профиля чуть ниже, чем Cherry, и при этом также имеют цилиндрические форму верхней части клавиши, которая смещена к дальней грани.</p>
+<h3><a class="header" href="#sa" id="sa">SA</a></h3>
+<p><em>Набор SA(s) 1965 (источник — <a href="https://www.reddit.com/r/MechanicalKeyboards/comments/7qk9wg/photos_xd75re_x_sa_1965_x_npkc_walnut/">Reddit</a>):</em>
+<img src="images/keycaps_sa_1965.jpg" alt="SA 1965" />
+<em>Набор SA(u) Nuclear Data (источник — <a href="https://pimpmykeyboard.com/sa-nuclear-data-keyset/">Pimp My Keyboard</a>):</em>
+<img src="images/keycaps_sa_u.jpg" alt="SA Nuclear Data" /></p>
+<p>Очень высокие клавиши со сферическим верхом, сделанные по образу и подобию клавиатур старых терминалов. Имеют разные вариации по высотам — все ряды могут быть одной высоты (uniform), а могут быть вогнуты или идти по дуге (sculptured). Изначально их делала компания SP, но сейчас производятся и китайские аналоги, например, Maxkey.</p>
+<h3><a class="header" href="#mt3-hi-pro" id="mt3-hi-pro">MT3 Hi-Pro</a></h3>
+<p><em>Набор MiTo Godspeed в профиль (источник — <a href="https://www.massdrop.com/buy/massdrop-x-mito-mt3-godspeed-custom-keycap-set">Massdrop</a>):</em>
+<img src="images/keycaps_MT3.jpg" alt="MT3 Godspeed" />
+Ещё один профиль, мимикрирующий под старые терминалы. Разработан Matt3o и производится MiTo. Очень схож со Sculptured SA, основное отличие - бо́льшая кривизна, по сравнению со вторым.</p>
+<h3><a class="header" href="#dsa" id="dsa">DSA</a></h3>
+<p><em>Набор DSA Royal Navy (источник — <a href="https://www.reddit.com/r/MechanicalKeyboards/comments/4n7fr2/ever_see_a_keycap_set_and_think_damn_i_wish_i_got/">Reddit</a>):</em>
+<img src="images/keycaps_dsa.jpg" alt="DSA Royal Navy" /></p>
+<p>Клавиши с низким профилем, сферической выемкой на верхней грани, единой высотой и уменьшенной площадью поверхности для нажатия. В основном производятся компанией Signature Plastics, но есть и китайские копии.</p>
+<h3><a class="header" href="#dss" id="dss">DSS</a></h3>
+<p><em>Набор SP Dolch DSS (источник — <a href="https://geekhack.org/index.php?topic=93584">geekhack</a>):</em>
+<img src="images/keycaps_dss.JPG" alt="DSS Dolch" /></p>
+<p>Sculptured-аналог DSA-профиля, практически идентичны Cherry по высоте.</p>
+<h3><a class="header" href="#xda" id="xda">XDA</a></h3>
+<p><em>XDA (источник — <a href="https://www.massdrop.com/talk/887/xda-keycaps-a-new-keycap-profile">Massdrop</a>):</em>
+<img src="images/keycaps_xda.jpg" alt="DSA Royal Navy" />
+Uniform-кейкапы со сферической верхней частью, более широкой и менее углублённой по сравнению с DSA. Также чуть выше, чем DSA.</p>
+<h3><a class="header" href="#mdamix" id="mdamix">MDA/MIX</a></h3>
+<p><em>Набор MDA Big Bang (источник — <a href="https://kbdfans.cn/products/big-bang-mda-profile-ortholinear-keycaps">Kbdfans</a>):</em>
+<img src="images/keycaps_mda.jpg" alt="MDA Big Bang" /></p>
+<p>Сферические клавиши с фигурным общим профилем. Похожи на SA уменьшенной высоты, однако имеют немного другой угол наклона, при этом верхняя поверхность кейкапов чуть больше, чем у XDA-профиля.</p>
+<h2><a class="header" href="#Ряды-и-общий-профиль-клавиш" id="Ряды-и-общий-профиль-клавиш">Ряды и общий профиль клавиш</a></h2>
+<p>Как уже было сказано выше, профиль есть не только у отдельных клавиш, он также присутствует и у всего набора — клавиши, расположенные в разных рядах, отличаются по высоте и форме. Принято разделять все наборы клавиш на две группы: со sculpted(фигурным)-профилем и с uniform(идентичным)-профилем.</p>
+<p>Причина существования фигурных профилей заключается в необходимости получить вогнутую поверхность, печатать на которой более удобно, чем на плоской или ступенчатой (stepped profile, как в печатных машинках). В некоторых клавиатурах (IBM Model M/F, Fujitsu FKB4700) клавиши имели одинаковую высоту, но были расположены на вогнутой поверхности. Монтировать MX-совместимые переключатели на изогнутой поверхности технологически сложно, поэтому сейчас в большинстве случаев вогнутая поверхность имитируется формой самих клавиш.</p>
+<p>Рассмотрим это на примере современных профилей, таких как OEM или Cherry. Несложно догадаться, что в фигурном профиле клавиши как бы идут ступенькой от верхнего (R1) ряда к нижнему (R4), создавая угол наклона у верхних граней клавиш. Но сейчас самые внимательные из вас зададутся вопросом: почему же на полноразмерной клавиатуре есть целых шесть рядов клавиш, а мы написали про всего лишь четыре? А на самом деле всё очень просто: два верхних ряда идут одинаковыми по высоте, равно как и два нижних, в результате картина принимает подобный вид: R1(Esc)-R1(123)-R2(Q)-R3(A)-R4(Z)-R4(Ctrl). Иногда пробел записывается отдельно от нижнего ряда R4 (Space), так как в некоторых профилях он отличается по форме, высоте и углу наклона от своих соседей по ряду.</p>
+<p>В нестандартных профилях, например, SA или MDA, разлиновка по рядам может быть как такой же, так и отличаться. Ну а с uniform-профилем всё гораздо проще: абсолютно все ряды в нём имеют одинаковую высоту клавиш.</p>
+<p>Необходимость в uniform-профилях обусловлена широким распространением нестандартных клавиатур (отличающихся от классических ANSI/ISO для PC): POS-клавиатуры, специализированные пульты, самодельные клавиатуры. Да и на стандартной клавиатуре может возникнуть необходимость перестановки клавиш в связи с переходом на альтернативные раскладки (Dvorak, Colemak и т. п.).</p>
+<p>Стоит заметить, что под профилем понимается как форма отдельных клавиш, так и их высота, что может вносить определённую путаницу. Это означает, что набор клавиш с профилем SA не всегда подразумевает наличие в нём четырёх различных профилей (R1, R2, R3, R4). Например, в наборе «<a href="https://pimpmykeyboard.com/sa-ice-cap-keyset/">SA Ice Cap</a>» от SP все клавиши имеют одинаковый профиль третьего ряда (R3), не имеющего наклона. Сделано это ради совместимости с большим количеством клавиатур, в первую очередь — нестандартных ортолинейных. Подавляющее большинство относительно недорогих наборов SA с Aliexpress тоже не являются полностью фигурными. Может использоваться только R3 или R2+R3.</p>
+<h2><a class="header" href="#Методы-нанесения-символов" id="Методы-нанесения-символов">Методы нанесения символов</a></h2>
+<h3><a class="header" href="#Двойное-литьё-doubleshot" id="Двойное-литьё-doubleshot">Двойное литьё (doubleshot)</a></h3>
+<p>По данной технологии сама клавиша и символы отливаются из двух видов пластика разного цвета. Символы на клавишах с двойным литьём являются самыми износостойкими. Изготавливаются преимущественно из ABS, так как этот пластик имеет более низкую температуру плавления и не деформируется при остывании.</p>
+<p><em>Образец клавиши с двойным литьём (источник — <a href="https://deskthority.net/wiki/Double-shot_moulding">Deskthority</a>):</em>
+<img src="images/keycaps_doubleshot.jpg" alt="Doubleshot keycap sample" /></p>
+<p>Плюсы:</p>
+<ul>
+<li>Износостойкость</li>
+<li>Контраст и чёткость</li>
+<li>Возможны любые сочетания цветов и материалов (например, полупрозрачный пластик для символов)</li>
+</ul>
+<p>Минусы:</p>
+<ul>
+<li>Цена. Качественно выполненные клавиши с двойным литьём стоят от $100 (Maxkey) за стандартный набор и выше.</li>
+<li>Недостаточная гибкость технологии. Изготовление дополнительных форм для литья требует больших инвестиций.</li>
+<li>Чаще всего клавиши с двойным литьём производятся из ABS-пластика, у которого есть свои минусы.</li>
+</ul>
+<h4><a class="header" href="#Производители" id="Производители">Производители</a></h4>
+<p><strong>Signature Plastics</strong> (SP) производят ABS doubleshot'ы и PBT dye-sub'ы в профилях SA, DSA и DCS, а так же PBT dyesub'ы в профиле G20.
+<strong>Maxkey</strong> - производит ABS doubleshot'ы. стоят они дешевле чем аналогичные от SP, но пока есть только наборы под стандартную ANSI-раскладку и только из ABS. 
+<strong>GMK</strong> — doubleshot'ы с Cherry-профилем, производятся на оригинальном оборудовании Cherry.
+<strong>JTK</strong> — doubleshot'ы с Cherry-профилем. Качество заметно хуже чем у GMK, цена значительно меньше. Сейчас в работе находятся кейкапы изготавливаемые по технологии тройного литья (трехцветные кейкапы). 
+<strong>MiTo</strong> — dye-sub PBT MT3, XDA, DSA, doubleshot ABS SA.
+<strong>Tai-Hao</strong> производит ABS и PBT doubleshot'ы с OEM-профилем и с собственным Cubic (гибрид Cherry и OEM). Стоят относительно недорого, но толщина стенок при этом заметно меньше, чем у GMK. 
+<strong>Gateron</strong> делает бланки в Cherry профиле.
+Так же стоит отметить <strong>Varmilo</strong> и <strong>Leopold</strong> которые делают кейкапы из PBT (а последний делает качественный PDT doubleshot) в профилях похожих на cherry.</p>
+<h4><a class="header" href="#Двойное-литьё-из-pbt" id="Двойное-литьё-из-pbt">Двойное литьё из PBT</a></h4>
+<p>PBT-doubleshot'ы уже давно стали реальностью несмотря на все технологические трудности. На Aliexpress они стоят даже дешевле ABS-клавиш от премиум-брендов, но чудес не бывает: помимо традиционных для безымянных производителей проблем с контролем качестве (выравнивание символов, разводы на поверхности) добавляются побочные эффекты, связанные с тугоплавкостью PBT — тонкие элементы символов (например, мелкий шрифт на модификаторах) расплываются, получаются неровными.<br />
+С недавнего времени клавиатуры Leopold стали поставляться с кейкапами изготовленными из PBT пластика по технологии двойного литья.</p>
+<h4><a class="header" href="#Сверхдешёвые-doubleshotы" id="Сверхдешёвые-doubleshotы">Сверхдешёвые doubleshot'ы</a></h4>
+<p>Двойное литьё можно сделать дёшево. Клавиши большинства дешёвых китайских клавиатур с подсветкой выполнены изготовлены методом двойного литья. Отдельно их можно купить за $10-11 на Aliexpress, но за эти деньги вы получите очень тонкие стенки неравномерной толщины с подтёками прозрачного пластика и уродливый шрифт. Сделан он таким с вполне определённой целью — удешевить технологию за счёт отсутствия в символах замкнутых контуров.</p>
+<h4><a class="header" href="#coating-и-гравировка-лазером" id="coating-и-гравировка-лазером">Coating и гравировка лазером</a></h4>
+<p>Это не совсем doubleshot-кейкапы, но по натуре своей они на них очень похожи, так как подразумевают наличие двух слоёв материала. В самых дешёвых клавиатурах с подсветкой (хотя встречаются экземпляры и за 200+$) используются клавиши из полупрозрачного ABS-пластика, поверх которого наносится чёрная краска или какое-нибудь другое покрытие, например, soft-touch. После окрашивания на поверхности кейкапа лазером вырезается дорожка в краске, через которую затем и проходит свет. Износостойкость варьируется от нулевой до низкой — краска в большинстве случаев держится на пластике непрочно и быстро стирается, оставляя вместо символов размазанные их очертания. Сами клавиши по натуре ABS быстро засаливаются и начинают блестеть.</p>
+<h3><a class="header" href="#Сублимационная-печатать-dye-sublimation" id="Сублимационная-печатать-dye-sublimation">Сублимационная печатать (dye sublimation)</a></h3>
+<p>В данной технологии используются специальные красители, которые переносятся на пластик под воздействием высокой температуры. Краситель при этом проникает в пластик на определённую глубину, что обеспечивает износостойкость.</p>
+<p>Плюсы:</p>
+<ul>
+<li>Износостойкость — краситель проникает в пластик на толщину в несколько десятых мм. Сублимационная печать выполняется на PBT-пластике, который отличается механической прочностью.</li>
+<li>Возможна многоцветная печать.</li>
+<li>Высокий контраст в сравнении с лазерным выжиганием.</li>
+</ul>
+<p>Минусы:</p>
+<ul>
+<li>Цена. Качественная сублимационная печать (с точным позиционированием и хорошим разрешением) обходится дороже лазера и тампонной печати.</li>
+<li>В большинстве случаев чернила должны быть существенно темнее основы (например, чёрные символы на белых клавишах). Существует технология инверсной сублимационной печати, в которой вся клавиша из светлого пластика покрывается красителем, за исключением маски в виде символа, но визуально такие клавиши заметно уступают в качестве doubleshot'ам.</li>
+<li>Расплывание чернил на границах символов. На качественных клавишах (IBM, ePBT) практически не заметно, в отличие от безымянных клавиш с Aliexpress.</li>
+</ul>
+<h3><a class="header" href="#Лазерная-гравировка-лазерное-вспениваниевыжигание-laser-engravingetching" id="Лазерная-гравировка-лазерное-вспениваниевыжигание-laser-engravingetching">Лазерная гравировка, лазерное вспенивание/выжигание (laser engraving/etching)</a></h3>
+<p>Нанесение символов лазером не требует предварительной подготовки форм, трафаретов и прочего, так что идеально подходит для небольших тиражей. При этом следует различать вспенивание, при котором поверхность пластика нагревается, изменяя цвет и структуру, и гравировку, оставляющую различимую на ощупь канавку.</p>
+<p><em>Лазерное выжигание против двойного литья. Обратите внимание на контраст (источник — <a href="https://deskthority.net/wiki/Keycap_printing">Deskthority</a>):</em>
+<img src="images/keycaps_laser_vs_doubleshot.jpg" alt="Doubleshot keycap sample" /></p>
+<p>Вспенивание позволяет получить на пластике столь же износостойкий рисунок, как и при сублимационной печати. Недостатком является меньший контраст. При нагревании светлого пластика он темнеет, но близкий к чёрному цвет получить всё равно не удастся.</p>
+<p><em>Поддельный набор SA Miami Nights с Aliexpress. Из профилей только R2 и R3. Вместо двойного литья используется лазерная гравировка с заполнением (источник — Aliexpress):</em>
+<img src="images/keycaps_laser_etched_sa.jpg" alt="Doubleshot keycap sample" /></p>
+<p>Как и в случае с сублимационной печатью, получение светлых надписей на тёмном пластике требует дополнительных ухищрений. Специальные виды пластика могут менять цвет при обработке лазером за счёт выгорания определённых красителей (используется на некоторых клавиатурах Topre Realforce). Универсальным способом является гравировка. При повышенной мощности лазер оставляет на поверхности пластика канавку, которая затем может быть заполнена краской. Долго такие клавиши с гравировкой не живут. При интенсивном использовании канавки быстро забиваются грязью, а краска стирается.</p>
+<h3><a class="header" href="#Тампонная-печать-pad-printing" id="Тампонная-печать-pad-printing">Тампонная печать (pad printing)</a></h3>
+<p>Самая дешёвая технология для массового производства. Недостаток один — символы сравнительно быстро стираются. Износостойкость сильно зависит от конкретной технологии — клавиша у клавиатуры за $10 при интенсивном использовании сотрётся за год, в более дорогих клавиатурах может применяться краситель на основе эпоксидных смол с дополнительным прочным защитным покрытием, но прочность всё равно будет заметно ниже по сравнению с сублимационной печатью.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="FAQ.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="QMK.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="FAQ.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="QMK.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
