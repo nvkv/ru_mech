@@ -4,6 +4,13 @@ script:
   - tar xf ./mdbook-v0.3.1-x86_64-unknown-linux-gnu.tar.gz
   - chmod +x ./mdbook
   - ./mdbook build
-  - git checkout -b publish
-  - git add ./docs
-  - git push --force origin publish
+
+deploy:
+  local_dir: docs
+  target_branch: publish
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: false
+  on:
+    branch: master
