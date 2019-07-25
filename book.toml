@@ -11,6 +11,9 @@ build-dir = "docs"
 [output.html]
 additional-css = ["custom_assets/fonts.css"]
 no-section-label = true
+git-repository-url = "https://github.com/flumeded/ru_mech"
+git-repository-icon = "fa-github"
+
 
 [output.html.search]
 enable = false
