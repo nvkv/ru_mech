@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Программирование - Мех Гайд</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+        <link rel="stylesheet" href="custom_assets/fonts.css">
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="index.html">Home</a></li><li><a href="FAQ.html">FAQ</a></li><li><a href="keycaps.html">Кейкапы</a></li><li><a href="QMK.html" class="active">Программирование</a></li><li><a href="stabs.html">Cтабилизаторы</a></li><li><a href="shops.html">Где купить</a></li><li><a href="glossary.html">Глоссарий</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Мех Гайд</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                            <a href="https://github.com/flumeded/ru_mech" title="Git repository" aria-label="Git repository">
+                                <i id="git-repository-button" class="fa fa-github"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#qmk" id="qmk">QMK</a></h1>
+<p><a href="https://github.com/qmk/qmk_firmware/">QMK</a> (Quantum Mechanical Keyboard) — программное обеспечение (прошивка) с открытым исходным кодом для клавиатур. Обладает широким функционалом: гибкая работа с раскладками, слои, макросы, подсветка, работа с внешними устройствами — подключение координатных устройств PS/2, звуковые эффекты и т. п. QMK работает на распространённых микроконтроллерах с архитектурой Atmel AVR и некоторых ARM.</p>
+<p>Является форком <a href="https://github.com/tmk/tmk_keyboard">TMK</a>, развивается гораздо быстрее благодаря поддержке сообщества.</p>
+<p>QMK — не единственный проект с исходным кодом для клавиатур, но его популярность значительно выше, чем у родительского проекта TMK и альтернативных проектов типа <a href="https://github.com/dhowland/EasyAVR">EasyAVR</a>, <a href="https://sourceforge.net/projects/ps2avr/">PS2AVR</a> или <a href="https://github.com/kiibohd/controller">Kiibohd</a>.</p>
+<h2><a class="header" href="#Функционал" id="Функционал">Функционал</a></h2>
+<p>Подробное описание функционала QMK см. в <a href="https://docs.qmk.fm/#/features">оригинальной документации</a>.</p>
+<ul>
+<li><strong>Слои</strong>. Помимо традиционного переключения при удержании клавиши поддерживаются более интересные способы переключения слоёв. Например, сочетание на одной клавише переключения слоёв и обычного сканкода.</li>
+<li><strong>Макросы</strong>. Макросы, конечно, могут быть и программными (Compose, <a href="https://autohotkey.com/">AutoHotKey</a> и т. п.), но аппаратные макросы работают независимо от ОС.</li>
+<li><strong>Аудио</strong>. Ваша клавиатура может издавать звуки при включении, нажатии клавиш, переключении слоёв.</li>
+<li><strong>Auto Shift</strong>. При нажатии клавиши удерживать её чуть дольше обычного, клавиатура отправляет нажатие с Shift.</li>
+<li><strong>Подсветка</strong>. Простые светодиоды, RGB-линейки, индивидуальные RGB-светодиоды под каждой клавишей.</li>
+<li><strong>Bootmagic</strong>. Динамическое изменение настроек клавиатуры при помощи определённых комбинаций (например, замена CapsLock и Control местами).</li>
+<li><strong>Динамические макросы</strong>. Временные макросы можно создавать налету, без перепрошивки.</li>
+<li><strong>ЖК-дисплей HD44780</strong>.</li>
+<li><strong>Key Lock</strong>. Залипание клавиш-модификаторов.</li>
+<li><strong>Раскладка</strong>. Физическая раскладка (layout, расположение клавиш на матрице) абстрагирована от логической раскладки (keymap, назначение сканкодов клавишам).</li>
+<li><strong>Leader Key</strong>. Макрос можно повесить не просто на клавишу, а на определённое сочетание последовательно нажатых клавиш — аналогичный принцип используется в Compose.</li>
+<li><strong>Tap Dance</strong>. Функция клавиши меняется в зависимости от количества последовательных нажатий.</li>
+<li><strong>Управление мышью</strong>. Перемещение указателя с различным ускорением, кнопки, прокрутка.</li>
+<li><strong>Внешние координатные устройства</strong>. Можно подключить трекпоинт или любое другое устройство с PS/2.</li>
+<li><strong>Терминал</strong>. Отладочные команды через текстовый редактор.</li>
+</ul>
+<h2><a class="header" href="#Применение" id="Применение">Применение</a></h2>
+<p>QMK используется в мелкосерийных и полностью самосборных клавиатурах. Со списком поддерживаемых клавиатур можно ознакомиться в <a href="https://github.com/qmk/qmk_firmware/tree/master/keyboards">Git-репозитории</a>.</p>
+<p>QMK может работать не только в качестве контроллера, т. е. устройства, непосредственно управляющего клавиатурной матрицей, но и конвертера — устройства, подключаемого к готовой клавиатуре с интерфейсами ADB, XT или даже USB. Всё верно, существует <a href="https://github.com/qmk/qmk_firmware/tree/master/keyboards/converter/usb_usb">конвертер USB-USB</a>, позволяющий добавить функционал QMK к любой USB-клавиатуре.</p>
+<p>Если вы планируете использовать QMK, то есть следующие варианты:</p>
+<ul>
+<li>Полностью самодельная клавиатура. Используйте поддерживаемый микроконтроллер.</li>
+<li>Готовая клавиатура либо комплект для сборки. Выбирайте из <a href="https://github.com/qmk/qmk_firmware/tree/master/keyboards">списка поддерживаемых клавиатур</a>.</li>
+<li>Клавиатура с экзотическим интерфейсом (для которого нет конвертера) или с неисправным контроллером. Если клавиатура использует контактные переключатели, то можно подключить микроконтроллерную плату из списка поддерживаемых напрямую к матрице.</li>
+</ul>
+<h2><a class="header" href="#Поддерживаемые-контроллеры" id="Поддерживаемые-контроллеры">Поддерживаемые контроллеры</a></h2>
+<p>Основной архитектурой для QMK/TMK является AVR:</p>
+<ul>
+<li>ATmega32U4 (<a href="http://www.pjrc.com/teensy/">PJRC Teensy 2.0</a>, Pro Micro).</li>
+<li>AT90USB1286 (<a href="http://www.pjrc.com/teensy/">PJRC Teensy++ 2.0</a>)</li>
+<li>ATmega168P и ATmega328P поддерживаются, но из-за отсутствия аппаратного USB-стека требуют <a href="http://www.obdev.at/products/vusb/index.html">V-USB</a>.</li>
+<li>ATmega32U2</li>
+</ul>
+<p>Некоторое время назад была добавлена поддержка ARM-микроконтроллеров, совместимых с ChibiOS. Наиболее распространённые и проверенные: <a href="https://wiki.stm32duino.com/index.php?title=Blue_Pill">Blue Pill</a>, <a href="https://wiki.stm32duino.com/index.php?title=Black_Pill">Black Pill</a>, <a href="https://www.pjrc.com/teensy/teensyLC.html">Teensy LC</a>, <a href="https://www.pjrc.com/store/teensy32.html">Teensy 3.2</a>. Поддержка ARM/ChibiOS развивается медленно, работает не весь функционал: Bootmagic, звук и т. д.</p>
+<h2><a class="header" href="#Как-настроить-qmk" id="Как-настроить-qmk">Как настроить QMK</a></h2>
+<p>За подробностями стоит обратиться к <a href="https://docs.qmk.fm/#/">оригинальной документации</a>.</p>
+<p>Обычно процесс прошивки клавиатуры состоит из трех шагов: подготовки и настройки файла раскладки под свои нужды и возможности клавиатуры или выбора готовой раскладки, компилирования прошивки под клавиатуру и, собственно, прошивки контроллера клавиатуры.</p>
+<p>Для начала есть смысл воспользоваться <a href="http://www.keyboard-layout-editor.com">Keyboard Layout Editor</a>, чтобы облегчить подготовку раскладки перед прошивкой, или ознакомиться со свойствами готовых раскладок. Этот сайт позволяет очень хорошо визуализировать, как будет выглядеть раскладка на клавиатуре. Авторы раскладок часто снабжают свои варианты раскладок ссылками на этот сайт, где представлен их вариант.</p>
+<p>Файл для прошивки можно создать двумя способами:</p>
+<ul>
+<li>Скомпилировать с использованием файла раскладки <code>keymap.c</code>, который вы пишете с нуля или правите готовый под свои нужды.</li>
+<li>Воспользоваться онлайн-редактором раскладки, который сам компилирует файлы прошивок на основе раскладки, созданной или импортированной пользователем.</li>
+</ul>
+<p>У обоих способов есть свои плюсы и минусы. Онлайн-редактор не позволяет управлять довольно большим числом функций, он не поддерживает работу с макросами, не дает настраивать низкоуровневые параметры клавиатуры. Но очень прост и быстр в работе, достаточно раскидать нужные функции по кнопкам клавиатуры, и получить готовую прошивку. Создание кеймапов вручную открывает доступ ко всем возможностям, но требует хоть и небольшого, но уверенного понимания работы QMK.</p>
+<p>Основная проблема для пользователей проекта в том, что онлайн редактор не работает с файлами <code>keymap.c</code> и не способен их экспортировать. Это заставляет пользователя проделывать двойную работу или сразу использовать ручное редактирование.</p>
+<h3><a class="header" href="#Установка-тулчейна" id="Установка-тулчейна">Установка тулчейна</a></h3>
+<p>Данное руководство написано для начинающих (прим.: желательно иметь базовые представления о командных оболочках, принципах работы микроконтроллеров и минимальные навыки программирования), так что весь процесс, от установки QMK, драйверов до компиляции и прошивки будет описан для Windows.</p>
+<p>Для начала нужна POSIX-среда, в качестве которой удобнее всего использовать <a href="http://www.msys2.org/">Msys2</a>. Устанавливаем, запускаем и получаем своеобразную unix'оподобную среду с bash в качестве оболочки и Pacman в качестве менеджера пакетов. Исходники QMK размещены на Github, поэтому первым делом нужно будет установить клиент git:</p>
+<pre><code>pacman -S git
+</code></pre>
+<p>Затем качаем QMK:</p>
+<pre><code>git clone https://github.com/qmk/qmk_firmware
+</code></pre>
+<p>Переходим в каталог с QMK и запускаем скрипт, устанавливающий всё необходимое (компиляторы C для AVR и ARM, драйверы и т. д.):</p>
+<pre><code>cd qmk_firmware
+./util/qmk_install.sh
+</code></pre>
+<h3><a class="header" href="#Что-и-как-редактировать" id="Что-и-как-редактировать">Что и как редактировать?</a></h3>
+<p>Рассмотрим работу с прошивкой на примере простого макропада <a href="https://github.com/qmk/qmk_firmware/tree/master/keyboards/9key">9key</a>, работающего на ATmega32U4 с матрицей 3×3.</p>
+<p>В файле <code>rules.mk</code> определены некоторые константы для make:</p>
+<ul>
+<li><code>MCU = atmega32u4</code> — тип микроконтроллера.</li>
+<li><code>F_CPU = 16000000</code> — частота работы в Гц. ATmega32U4 встречаются на 16 МГц и на 8.</li>
+<li><code>OPT_DEFS += -DBOOTLOADER_SIZE=4096</code> — размер загрузчика. В данной клавиатуре используется плата Pro Micro с загрузчиком Caterina, который имеет размер 4096 байт.</li>
+<li><code>Build Options</code> — в этой секции можно выключить ненужный функционал QMK, уменьшив размер прошивки и потребление памяти.</li>
+</ul>
+<p>В <code>config.h</code> определены: конфигурация матрицы (в данном случае 3 ряда и 3 столбца), пины для строк и столбцов, подключение диодов (<code>COL2ROW</code> соответствует наиболее распространённому варианту с подключенеим диодов катодом в сторону строк), пин для подключения RGB-ленты WS1212. <code>TAPPING_TERM 200</code> — значение таймаута для <a href="https://docs.qmk.fm/#/feature_tap_dance">Tap Dance</a>, функции, позволяющей назначить на одну клавишу несколько действий, зависящих от количества быстрых нажатий («тапов»).</p>
+<h4><a class="header" href="#Физическая-раскладка" id="Физическая-раскладка">Физическая раскладка</a></h4>
+<p>В файле <code>9key.h</code>, в макросе <code>LAYOUT</code>, определяется физическая раскладка клавиатуры — соответствие матрицы и физического расположения клавиш. В данном случае они совпадают:</p>
+<pre><code class="language-c">#define LAYOUT( \
+        k00, k01, k02, \
+        k10, k11, k12, \
+        k20, k21, k22  \
+  ) \
+  { \
+      { k00, k01, k02 }, \
+      { k10, k11, k12 }, \
+      { k20, k21, k22 } \
+  }
+</code></pre>
+<p>Допустим, что мы строим похожий макропад, но с более сложным расположением клавиш: клавиша, подключённая в матрице к третьему столбцу третьей строки (k22) физически будет находится в левом верхнем углу, а средней клавиши в третьей строки не будет вообще. В этом случае матрица будет выглядеть вот так:</p>
+<pre><code class="language-c">#define LAYOUT( \
+       k22, k01, k02, \
+       k10, k11, k12, \
+       k20,      k00  \
+ ) \
+ { \
+     { k00, k01,   k02 }, \
+     { k10, k11,   k12 }, \
+     { k20, KC_NO, k22 } \
+ }
+</code></pre>
+<p>Возможно, вы видели платы и монтажные пластины, поддерживающие несколько физических раскладок. Например, с возможностью установить левый Shift шириной 2,25U или вместо него поставить короткий левый Shift шириной 1,25U и дополнительную 1U-клавишу. Для таких случаев может быть определено несколько вариантов физической раскладки. Пример: <a href="https://github.com/qmk/qmk_firmware/tree/master/keyboards/satan">плата GH60 Satan</a>.</p>
+<h4><a class="header" href="#Логическая-раскладка" id="Логическая-раскладка">Логическая раскладка</a></h4>
+<p>В каталоге <em>keymaps</em> лежат логические раскладки. Обычно там располагается каталог <em>default</em> с раскладной по умолчанию и дополнительные каталоги, в каждом из которых может лежать свой make-файл и файл <code>keymap.c</code>, в котором определяется самое интересное: слои, соответствие выдаваемых клавиатурой сканкодов и физической раскладки, макросы, логика работы светодиодов и прочий функционал. Можно будет создать свой вариант раскладки (например, в каталоге <em>username</em>) и компилировать прошивку с этой раскладкой командой <code>make 9key:username</code>.</p>
+<p>Посмотрим, что происходит в стандартном файле <code>keymap.c</code> клавиатуры 9key:</p>
+<pre><code class="language-c">#include QMK_KEYBOARD_H
+
+// Tap Dance Declarations
+enum {
+  ENT_5 = 0,
+  ZERO_7
+};
+
+// Macro Declarations
+enum {
+  DBL_0 = 0
+};
+</code></pre>
+<p>Определены имена для макросов Tap Dance и обычных.</p>
+<pre><code class="language-c">const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+/* LAYER 0
+ * ,-----------------------.
+ * |   1   |   2   |   3   |
+ * |-------+-------+-------|
+ * |   4   | 5/ENT |   6   | Dbl Tap 5 for Enter
+ * |-------+-------+-------|
+ * |  7/0  |   8   | 9/FN  | 7/0 = Dbl Tap 7 for 0  -  9/FN = Hold 9 for FN
+ * `-----------------------'
+ */
+[0] = LAYOUT( \
+  KC_1,       KC_2,      KC_3,       \
+  KC_4,       TD(ENT_5), KC_6,       \
+  TD(ZERO_7), KC_8,      LT(1, KC_9) \
+),
+
+/* LAYER 1
+ * ,-----------------------.
+ * |  ESC  |   +   |   -   |
+ * |-------+-------+-------|
+ * |  BSPC |   *   |   /   |
+ * |-------+-------+-------|
+ * |  00   |   .   |       |
+ * `-----------------------'
+ */
+[1] = LAYOUT( \
+  KC_ESC,   KC_PLUS, KC_MINS, \
+  KC_BSPC,  KC_ASTR, KC_SLSH, \
+  M(DBL_0), KC_DOT,  KC_TRNS  \
+)
+
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [ENT_5] = ACTION_TAP_DANCE_DOUBLE(KC_5, KC_ENT),
+  [ZERO_7] = ACTION_TAP_DANCE_DOUBLE(KC_7, KC_0)
+};
+
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
+  if (record-&gt;event.pressed) {
+      switch(id) {
+          case DBL_0:
+              SEND_STRING(&quot;00&quot;);
+              return false;
+      }
+  }
+  return MACRO_NONE;
+};
+
+void matrix_init_user(void) {
+}
+</code></pre>
+<p>Определены логические раскладки для двух слоёв. В итоге получается некое подобие нампада. Так как клавиш у нас всего 9, то приходится применять смекалку:</p>
+<ul>
+<li>В слое «0» на клавише в центре висит первый макрос Tap Dance под именем ENT_5. Действие для него определено в <code>qk_tap_dance_action_t tap_dance_actions[]</code>: клавиша выдаёт «5» при одиночном нажатии и Enter при двойном.</li>
+<li>Аналогичным образом объединены «7» и «0» на левой нижней клавише.</li>
+<li>Переключение на первый слой совмещено с «9» функцией LT: клавиша выдаёт «9» при одиночном нажатии и переключает на слой «1» при удержании. Для переключения слоёв в QMK есть много разнообразных способов, ознакомиться с ними можно в <a href="https://docs.qmk.fm/#/feature_advanced_keycodes?id=switching-and-toggling-layers">документации</a>.</li>
+<li>На слое «1» на левой нижней клавише назначен макрос <code>DBL_0</code>. Действия для макросов перечислены в <code>action_get_macro</code>. В данном случае макрос выдаёт два нуля.</li>
+<li>На правой нижней клавише мы видим <code>KC_TRNS</code>. Это специальный код для обозначения прозрачности. Подробное описание этой концепции можно посмотреть в <a href="https://docs.qmk.fm/#/keymap?id=keymap-and-layers">документации</a>.</li>
+</ul>
+<h4><a class="header" href="#Прошивка" id="Прошивка">Прошивка</a></h4>
+<h4><a class="header" href="#Что-может-пойти-не-так" id="Что-может-пойти-не-так">Что может пойти не так</a></h4>
+<h2><a class="header" href="#tmk" id="tmk">TMK</a></h2>
+<p>Проект <a href="https://github.com/tmk/tmk_keyboard">TMK</a> послужил основой для QMK. В настоящее время практически нет причин, по которым стоило бы использовать TMK вместо QMK. Исключение — <a href="https://github.com/tmk/tmk_keyboard/tree/master/converter">некоторые конвертеры</a>, не все из которых портированы в QMK.</p>
+<h1><a class="header" href="#Контроллеры" id="Контроллеры">Контроллеры</a></h1>
+<h2><a class="header" href="#atmega32u4" id="atmega32u4">Atmega32U4</a></h2>
+<p>В настоящее время микроконтроллер Atmel Atmega32U4 является основной рабочей лошадкой в проектах самодельных и мелкосерийных клавиатур. Он хорошо задокументирован и хорошо изучен за несколько лет производства, имеет USB-стек и стоит недорого.</p>
+<p>В небольших проектах удобно использовать готовые платы: упрощается проектирование печатной платы (не нужно размещать, а затем паять миниатюрные SMD-компоненты), возможен навесной монтаж, прошит загрузчик.</p>
+<h3><a class="header" href="#pro-micro" id="pro-micro">Pro Micro</a></h3>
+<p><img src="images/mcu/pro_micro_sparkfun.jpg" alt="Sparkfun Pro Micro" /></p>
+<p><strong>Sparkfun Pro Micro</strong>. Оригинал производства Sparkfun. Особого смысла покупать его нет, стоит $16. Стоит заметить, что Sparkfun распространяет дизайн Pro Micro под свободной лицензией, так что упрекнуть китайцев в пиратстве тут нельзя. Доступно 18 пинов ввода-вывода. Ещё два (B0 и D5 в качестве выходов) можно получить, припаявшись к набортным светодиодам.</p>
+<p><img src="images/mcu/pro_micro_blue.jpg" alt="Blue Pro Micro" /></p>
+<p><strong>Синий Pro Micro</strong> — один из распространённых китайских клонов на плате синего цвета. Стоят они на Aliexpress начиная от $3 с небольшим. Встречаются разновидности на 5 В / 16 МГц и 3,3 В / 8 МГц (последний может понадобиться для конвертера usb_usb).</p>
+<p><img src="images/mcu/pro_micro_black.jpg" alt="Black Pro Micro" /></p>
+<p><strong>Чёрный Pro Micro</strong>. Совпадают по форм-фактору с синими, но используется Atmega32U4 в более крупном корпусе 44TQFP вместо 44QFN, что позволяет <a href="http://www.40percent.club/2018/05/black-pro-micro-25-pins.html">подключиться к ещё 5 пинам</a> (итого: 18+2+5=25): B7, C7, D6, F0, F1.</p>
+<p><img src="images/mcu/pro_micro_fat_black.jpg" alt="Fat black Pro Micro" /></p>
+<p><strong>«Толстый» чёрный Pro Micro</strong>. Можно узнать по жёлтым конденсаторам и логотипу <em>Diymore</em> на обратной стороне платы. Разъём micro-USB значительно прочнее — монтируется через отверстия в плате. Имеет ту же распиновку, что и обычные Pro Micro, но плата на 2,54 мм шире. Предпочтительный вариант для навесного монтажа, но вставить в плату, рассчитанную на обычный Pro Micro не получится.</p>
+<p><img src="images/mcu/pro_micro_square.jpg" alt="Strong Pro Micro" /></p>
+<p><strong>Квадратный Pro Micro</strong>. Можно найти на Aliexpress под названием «Strong Pro Micro». Несколько разновидностей: 3,3/5 В и micro/mini-USB. Несколько дороже других китайских плат, но расположение пинов и наличие крепёжных отверстий  может быть удобным для навесного монтажа. Доступно 20 пинов. Присутствует кнопка reset и крепление USB-разъёма через отверстия в плате.</p>
+<p><img src="images/mcu/micro_black.jpg" alt="Black Micro" /></p>
+<p><strong>RobotDyn Micro</strong> — просто Micro, без Pro. Плата длиннее и дороже, чем дешёвые Pro Micro, но доступно сразу 24 пина, и кнопка reset лишней не будет.</p>
+<h3><a class="header" href="#teensy-20" id="teensy-20">Teensy 2.0</a></h3>
+<p><img src="images/mcu/teensy_2_chinese.jpg" alt="Teensy 2.0 chinese" /></p>
+<p>Плата от PJRC с проприетарным загрузчиком HalfKay. Стоит недёшево — $16 за оригинал без учёта доставки и около $10 за китайский клон на Aliexpress, но имеет ряд преимуществ перед Pro Micro:</p>
+<ul>
+<li>25 пинов ввода-вывода доступны без фокусов с припаиванием к ногам МК.</li>
+<li>Загрузчик HalfKay. Во-первых, он занимает всего 512 байт вместо 4096 (Caterina/DFU), лишнее место может пригодиться. Во-вторых, он не требует установки драйверов под Windows, и можно использовать предельно простой GUI — с справится человек, ничего не знающий о программировании МК.</li>
+<li>Кнопка reset на борту.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="keycaps.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="stabs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="keycaps.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="stabs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Cтабилизаторы - Мех Гайд</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+        <link rel="stylesheet" href="custom_assets/fonts.css">
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="index.html">Home</a></li><li><a href="FAQ.html">FAQ</a></li><li><a href="keycaps.html">Кейкапы</a></li><li><a href="QMK.html">Программирование</a></li><li><a href="stabs.html" class="active">Cтабилизаторы</a></li><li><a href="shops.html">Где купить</a></li><li><a href="glossary.html">Глоссарий</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Мех Гайд</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                            <a href="https://github.com/flumeded/ru_mech" title="Git repository" aria-label="Git repository">
+                                <i id="git-repository-button" class="fa fa-github"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#Стабилизаторы" id="Стабилизаторы">Стабилизаторы</a></h1>
+<h2><a class="header" href="#Зачем-они-нужны" id="Зачем-они-нужны">Зачем они нужны</a></h2>
+<p>В связи с тем, что на клавиатуре есть относительно большие клавиши, появляется проблема их стабилизации.
+Самая большая клавиша на клавиатуре — пробел, держится на ней точно так же, как и любая другая клавиша с буквой, поэтому если нажать на нее с края, клавишу просто перевесит, как коромысло.
+Чтобы решить эту проблему в клавиатурах есть стабилизаторы. Это механизм, который позволяет нажать на клавишу в любом месте, и она поведет себя так, будто вы нажали на нее ровно посередине.</p>
+<h2><a class="header" href="#Типы-стабилизаторов" id="Типы-стабилизаторов">Типы стабилизаторов</a></h2>
+<p>Стабилизаторы есть во всех современных клавиатурах, даже в мембранных, но мы поговорим о механических.
+В современных механических клавиатурах стоит один из двух видов стабилизаторов:</p>
+<h4><a class="header" href="#costar" id="costar">Costar</a></h4>
+<p>На самом деле данный вид стабилизаторов называется просто «проволочный», но из за того что такие стабилизаторы получили большое распространение в клавиатурах фирмы Costar, прижилось именно такое наименование.
+Принцип работы строится на том, что с двух сторон в клавиши вставляются ушки (plastic insert), и в них вставляется проволока, которая также крепится к пластиковой защёлке, вставляемой в клавиатуру.
+Данный вид стабилизаторов довольно прост в производстве и принципе работы, поэтому с ними редко бывают проблемы до тех пор, пока вам не понадобится снять с них клавишу.
+Процесс снятия и установки клавиши с стабилизаторов требуется предельной аккуратности и сноровки, и зачастую заканчивается сломаннышми ушками, если человек предварительно не посмотрел, как их правильно снимать.</p>
+<h4><a class="header" href="#cherry" id="cherry">Cherry</a></h4>
+<p>Как можно догадаться из названия, были впервые представлены в клавиатурах Cherry. В некотором плане дизайн этих стабилизаторов пересекается с Costar. Тут также есть проволока, но ушки вставляются не в клавишу, а в защелки, которые вставляются в клавиатуру. На другой их стороне такой же стем, на который вставляется клавиша.
+С такими стабилизаторами бесконечно проще снимать клавиши, не рискуя что-то сломать или тратить по 2–3 минуты, чтобы поставить клавишу, в которой есть стабилизатор.</p>
+<h2><a class="header" href="#Метод-крепления-стабилизаторов" id="Метод-крепления-стабилизаторов">Метод крепления стабилизаторов</a></h2>
+<p>У стабилизаторов Cherry есть два метода установки. Оба метода требуют технологических отверстий в плате или монтажной пластине, поэтому они не взаимозаменяемы.</p>
+<h4><a class="header" href="#pcb-mount" id="pcb-mount">PCB Mount</a></h4>
+<p>Крепятся в специальные отверстия в печатной плате клавиатуры.
+Если вам нужно будет поменять стабилизатор с таким видом крепления, то при наличии монтажной пластины придётся сначала выпаять абсолютно все переключатели.</p>
+<h4><a class="header" href="#plate-mount" id="plate-mount">Plate Mount</a></h4>
+<p>Стабилизаторы устанавливаются в специальные вырезы монтажной пластины клавиатуры. Чтобы их заменить зачастую требуется выпаять лишь один переключатель, который они и стабилизируют. При проектировании собственной клавиатуры с такими стабилизаторами необходимо учитывать требования к толщине пластины для MX-совместимых переключателей (1,5±0,1 мм). На более толстой пластине переключатели и крепления стабилизатора не защёлкнутся, их придётся приклеивать.</p>
+<h2><a class="header" href="#Что-же-лучше" id="Что-же-лучше">Что же лучше?</a></h2>
+<p>С методами установки особой разницы нет, за исключением того, что PCB Mount встречаются намного чаще, их сложно заменить, а Plate Mount хорошего качества довольно сложно достать.</p>
+<p>С типами стабилизаторов все слегка сложнее, так как оба дизайна имеют свои плюсы и минусы.</p>
+<p>С Costar сложно снимать и ставить клавиши, ушки можно сломать и потерять, но взамен они предлагают неплохую стабилизацию, а технология производства не очень сложна.</p>
+<p>С другой стороны, Cherry не имеют проблем с установкой клавиш, они отлично стабилизируют, но дело в том, что дизайн требует очень точного литья защёлки и пластиковых стемов, иначе возникает…</p>
+<h2><a class="header" href="#Люфт-rattle" id="Люфт-rattle">Люфт (rattle)</a></h2>
+<p>Когда вы отпускаете нажатую клавишу, пружина внутри переключателя толкает её обратно. Когда переключатель достигает своего крайнего верхнего положения, оставшийся импульс должен уйти в корпус клавиатуры, но из за того, что стем стабилизатора не идеально прилегает к защелке, возникают вибрации, и слышен звук гремящего пластика. Для понимания: в идеале стабилизатор никак не должен выдавать своего присутствия в клавише звуком.
+Люфт стабилизатора, как ложка дегтя, может испортить хорошую клавиатуру, и, к сожалению, даже крупные производители зачастую экономят на них ставя китайские реплики (например, Vortex Pok3r). В итоге мы имеем отличную клавиатуру, которая звенит, как погремушка при нажатии на пробел или Return.
+Единственные Cherry стабилизаторы, которые действительно не гремят, как ни странно, производятся лишь компаниями Cherry и GMK.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="QMK.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="shops.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="QMK.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="shops.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
